@@ -1,0 +1,27 @@
+.weather-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  > h1 {
+    font-size: 40px;
+    padding-right: 20px;
+    margin-bottom: 0;
+  }
+  > p {
+    font-size: 20px;
+    margin-bottom: -30px;
+  }
+}
+
+.divide-line {
+  margin-left: 15px;
+  width: 90%;
+  height: 3px;
+  background-color: white;
+}
+
+.other-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

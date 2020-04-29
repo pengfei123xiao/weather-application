@@ -1,4 +1,5 @@
 import React from 'react';
+import './app.css';
 import weatherApi from '../../api/weather-api';
 import CurrentWeather from '../Current-weather/CurrentWeather';
 
@@ -87,11 +88,13 @@ class App extends React.Component {
   render () {
     const { city, temp, description, time } = this.state.currData
     return (
-      <div>
-        hello
-        {this.state.isLoading && <h1>Loading...</h1>}
-        {!this.state.isLoading && <CurrentWeather
-          city={city} temp={temp} description={description} time={time} />}
+      <div className='app-container'>
+        <section className='left-container'>
+          hello
+          {this.state.isLoading && <h1>Loading...</h1>}
+          {!this.state.isLoading && <CurrentWeather
+            city={city} temp={temp} description={description} time={time} />}
+        </section>
       </div >
 
     )

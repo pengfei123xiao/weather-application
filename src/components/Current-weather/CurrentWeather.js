@@ -1,4 +1,5 @@
 import React from 'react';
+import './cur-weather.css';
 
 class CurrentWeather extends React.Component {
   constructor(props) {
@@ -7,11 +8,16 @@ class CurrentWeather extends React.Component {
 
   render () {
     return (
-      <section>
-        <h1>{this.props.temp}<span>&#176;C</span></h1>
-        <p>{this.props.description}</p>
-        <p>{this.props.city}</p>
-        <p>{this.props.time}</p>
+      <section className='cur-weather'>
+        <div className='weather-info'>
+          <h1>{this.props.temp}&#176;C</h1>
+          <p>{this.props.description}</p>
+        </div>
+        <div class="divide-line"></div>
+        <div className='other-info'>
+          <p>{this.props.city}</p>
+          <p>{this.props.time}</p>
+        </div>
       </section>
     )
   };
