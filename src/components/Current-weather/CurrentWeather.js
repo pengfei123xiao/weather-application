@@ -7,16 +7,18 @@ class CurrentWeather extends React.Component {
   }
 
   render () {
+    const { city, temp, description, time } = this.props;
+
     return (
       <section className='cur-weather'>
         <div className='weather-info'>
-          <h1>{this.props.temp}&#176;C</h1>
-          <p>{this.props.description}</p>
+          <h1>{temp}&#176;C</h1>
+          <p>{description}</p>
         </div>
-        <div class="divide-line"></div>
+        <div className="divide-line"></div>
         <div className='other-info'>
-          <p>{this.props.city}</p>
-          <p>{this.props.time}</p>
+          <p>{city}</p>
+          <p>{time}</p>
         </div>
       </section>
     )

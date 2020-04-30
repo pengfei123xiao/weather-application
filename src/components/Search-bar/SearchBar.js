@@ -39,9 +39,9 @@ class SearchBar extends React.Component {
             value={this.state.query}
             onChange={this.handleChange} />
           {/* <span onClick={this.handleClick}></span> */}
-          <div class="search-bar__close-btn" onClick={this.handleClick}>
-            <div class="cross-line"></div>
-            <div class="cross-line"></div>
+          <div className="search-bar__close-btn" onClick={this.handleClick}>
+            <div className="cross-line"></div>
+            <div className="cross-line"></div>
           </div>
         </form>
 

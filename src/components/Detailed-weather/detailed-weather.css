@@ -1,0 +1,21 @@
+.sun-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.sun-container__sunrise, .sun-container__sunset {
+  background-color: #808080;
+  border-radius: 5px;
+  margin-right: 4%;
+  padding: 3% 2%;
+  text-align: center;
+  font-weight: bold;
+  opacity: 0.85;
+}
+/*# sourceMappingURL=detailed-weather.css.map */

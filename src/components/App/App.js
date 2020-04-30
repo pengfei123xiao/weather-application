@@ -3,6 +3,7 @@ import './app.css';
 import weatherApi from '../../api/weather-api';
 import CurrentWeather from '../Current-weather/CurrentWeather';
 import SearchBar from '../Search-bar/SearchBar';
+import DetailedWeather from '../Detailed-weather/DetailedWeather';
 
 const API_key = '0775917fc2a3889cd95b31da9ea452c4';
 
@@ -11,12 +12,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       isLoading: true,
-      // currRawData: {},
       currData: {
         city: "",
         temp: 0,
         description: "",
         time: "",
+        sunrise: "",
+        sunset: "",
       },
       currWeatherCondition: "",
       forecastWeather: {},
@@ -46,17 +48,18 @@ class App extends React.Component {
       console.log('weather response:', response);
       this.setState({
         isLoading: false,
-        // currRawData: response,
         currData: {
           city: response.data.name,
           // toFixed(): return a string using fixed-point notation
           temp: response.data.main.temp.toFixed(0),
           description: response.data.weather[0].description,
           time: this.timeConverter(response.data.dt),
+          sunrise: this.amPmConverter(response.data.sys.sunrise),
+          sunset: this.amPmConverter(response.data.sys.sunset),
         },
         currWeatherCondition: response.data.weather[0].main
       });
-      console.log(this.state);
+      console.log('curr state:', this.state);
     }).catch(() => {
       // handle error
       alert('unknown city / error');
@@ -76,6 +79,14 @@ class App extends React.Component {
     // })
   }
 
+  amPmConverter = (UNIX_timestamp) => {
+    const res = new Date(UNIX_timestamp * 1000);
+    const min = res.getMinutes();
+    const hour = res.getHours();
+    const currTime = hour > 12 ? `${hour - 12}:${min}PM` : `${hour}:${min}AM`;
+    return currTime;
+  }
+
   timeConverter = (UNIX_timestamp) => {
     // Create a new JavaScript Date object based on the timestamp,
     // multiplied by 1000 so that the argument is in milliseconds, not seconds.
@@ -89,22 +100,24 @@ class App extends React.Component {
     // getMonth() returns an integer number between 0 and 11, 0 corresponds to January. 
     const month = monthsArr[res.getMonth()];
     const date = res.getDate();
-    const min = res.getMinutes();
-    const hour = res.getHours();
-    const currTime = hour > 12 ? `${hour - 12}:${min}PM` : `${hour}:${min}AM`;
+    const currTime = this.amPmConverter(UNIX_timestamp)
     const time = `${day} - ${date} ${month} ${year} - ${currTime}`;
     return time;
   }
 
   render () {
-    const { city, temp, description, time } = this.state.currData
+    const { city, temp, description, time, sunrise, sunset } = this.state.currData
     return (
       <div className='app-container'>
         <section className='left-container'>
           <SearchBar searching={this.handleSearch} />
           {this.state.isLoading && <h1>Loading...</h1>}
           {!this.state.isLoading && <CurrentWeather
-            city={city} temp={temp} description={description} time={time} />}
+            city={city} temp={temp} description={description} time={time}
+          />}
+        </section>
+        <section className="right-container">
+          <DetailedWeather sunrise={sunrise} sunset={sunset} />
         </section>
       </div >
 

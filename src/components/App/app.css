@@ -4,9 +4,16 @@
   border-radius: 15px;
   margin: 20px;
   color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .left-container {
   width: 70%;
+}
+
+.right-container {
+  width: 30%;
 }
 /*# sourceMappingURL=app.css.map */
