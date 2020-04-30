@@ -2,8 +2,9 @@ import React from 'react';
 import './app.css';
 import weatherApi from '../../api/weather-api';
 import CurrentWeather from '../Current-weather/CurrentWeather';
+import SearchBar from '../Search-bar/SearchBar';
 
-const API_key = 'c8e76c9b4fa36112b0d8aff693cee1fc';//0775917fc2a3889cd95b31da9ea452c4
+const API_key = '0775917fc2a3889cd95b31da9ea452c4';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,15 +19,25 @@ class App extends React.Component {
         time: "",
       },
       currWeatherCondition: "",
-      forecastWeather: {}
+      forecastWeather: {},
+      query: 'Sydney'
     };
   }
 
   componentDidMount () {
+    // automatic query Sydney(default city)
+    this.fetchWeatherData(this.state.query);
+  }
+
+  handleSearch = (query) => {
+    this.fetchWeatherData(query);
+  }
+
+  fetchWeatherData = (query) => {
     // ---obtain weather data---
     weatherApi.get('weather', {
       params: {
-        q: "Sydney", // default city is Sydney
+        q: query, // default city is Sydney
         appid: `${API_key}`,
         units: 'metric' // so that the temp is in Celsius
       } // `http://api.openweathermap.org/data/2.5/weather?q=Sydney&appid=${API_key}`
@@ -48,7 +59,7 @@ class App extends React.Component {
       console.log(this.state);
     }).catch(() => {
       // handle error
-      console.log('error');
+      alert('unknown city / error');
     });
 
     // ---obtain weather forecast data---
@@ -90,7 +101,7 @@ class App extends React.Component {
     return (
       <div className='app-container'>
         <section className='left-container'>
-          hello
+          <SearchBar searching={this.handleSearch} />
           {this.state.isLoading && <h1>Loading...</h1>}
           {!this.state.isLoading && <CurrentWeather
             city={city} temp={temp} description={description} time={time} />}
