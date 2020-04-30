@@ -17,8 +17,12 @@ class App extends React.Component {
         temp: 0,
         description: "",
         time: "",
+        weatherIcon: "",
         sunrise: "",
         sunset: "",
+        clouds: "",
+        humidity: "",
+        wind: "",
       },
       currWeatherCondition: "",
       forecastWeather: {},
@@ -54,8 +58,12 @@ class App extends React.Component {
           temp: response.data.main.temp.toFixed(0),
           description: response.data.weather[0].description,
           time: this.timeConverter(response.data.dt),
+          weatherIcon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`,
           sunrise: this.amPmConverter(response.data.sys.sunrise),
           sunset: this.amPmConverter(response.data.sys.sunset),
+          clouds: response.data.clouds.all,
+          humidity: response.data.main.humidity,
+          wind: response.data.wind.speed
         },
         currWeatherCondition: response.data.weather[0].main
       });
@@ -106,7 +114,8 @@ class App extends React.Component {
   }
 
   render () {
-    const { city, temp, description, time, sunrise, sunset } = this.state.currData
+    const { city, temp, description, time, weatherIcon, sunrise, sunset,
+      clouds, humidity, wind } = this.state.currData
     return (
       <div className='app-container'>
         <section className='left-container'>
@@ -114,10 +123,12 @@ class App extends React.Component {
           {this.state.isLoading && <h1>Loading...</h1>}
           {!this.state.isLoading && <CurrentWeather
             city={city} temp={temp} description={description} time={time}
+            weatherIcon={weatherIcon}
           />}
         </section>
         <section className="right-container">
-          <DetailedWeather sunrise={sunrise} sunset={sunset} />
+          <DetailedWeather sunrise={sunrise} sunset={sunset} clouds={clouds}
+            humidity={humidity} wind={wind} />
         </section>
       </div >
 

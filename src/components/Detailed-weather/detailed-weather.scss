@@ -1,15 +1,38 @@
+@import "../configs";
+
+.detailed-weather-container {
+  display: flex;
+  flex-direction: column;
+  opacity: 0.8;
+}
+
 .sun-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   &__sunrise,
   &__sunset {
-    background-color: #808080;
+    background-color: $color-gray1;
     border-radius: 5px;
     margin-right: 4%;
     padding: 3% 2%;
     text-align: center;
     font-weight: bold;
-    opacity: 0.85;
+    font-size: $font-sm;
+  }
+}
+
+.other-weather-info-container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: $color-gray1;
+  border-radius: 5px;
+  p {
+    margin-right: 1rem;
+    font-size: $font-xsm;
   }
 }
