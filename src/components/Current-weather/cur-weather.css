@@ -1,0 +1,39 @@
+.weather-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.weather-info > h1 {
+  font-size: 40px;
+  padding-right: 20px;
+  margin-bottom: 0;
+}
+
+.weather-info > p {
+  font-size: 20px;
+}
+
+.divide-line {
+  margin-left: 15px;
+  width: 90%;
+  height: 3px;
+  background-color: white;
+}
+
+.other-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+/*# sourceMappingURL=cur-weather.css.map */
