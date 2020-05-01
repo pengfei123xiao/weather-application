@@ -1,5 +1,6 @@
 .cur-weather {
-  margin-left: 15px;
+  width: 90%;
+  margin: auto;
   background-color: rgba(160, 174, 192, 0.5);
   border-radius: 15px;
   padding: 10px;

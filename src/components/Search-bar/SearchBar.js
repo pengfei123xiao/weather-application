@@ -16,7 +16,7 @@ class SearchBar extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault(); // prevent jumping to a new page
-    console.log(this.state.query);
+    console.log(`query city: ${this.state.query}`);
     this.props.searching(this.state.query);
     // clear search bar
     this.setState({

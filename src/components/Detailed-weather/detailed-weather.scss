@@ -3,7 +3,7 @@
 .detailed-weather-container {
   display: flex;
   flex-direction: column;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .sun-container {
@@ -24,6 +24,7 @@
 
 .other-weather-info-container {
   width: 90%;
+  // max-height: 10%;
   margin: auto;
   display: flex;
   flex-wrap: wrap;

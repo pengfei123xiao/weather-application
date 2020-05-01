@@ -16,7 +16,8 @@ class App extends React.Component {
         city: "",
         temp: 0,
         description: "",
-        time: "",
+        localTime: "",
+        timezone: 0, // Shift in seconds from UTC
         weatherIcon: "",
         sunrise: "",
         sunset: "",
@@ -57,15 +58,17 @@ class App extends React.Component {
           // toFixed(): return a string using fixed-point notation
           temp: response.data.main.temp.toFixed(0),
           description: response.data.weather[0].description,
-          time: this.timeConverter(response.data.dt),
+          localTime: this.timeConverter(response.data.dt, response.data.timezone),
+          timezone: response.data.timezone,
           weatherIcon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`,
-          sunrise: this.amPmConverter(response.data.sys.sunrise),
-          sunset: this.amPmConverter(response.data.sys.sunset),
+          sunrise: this.amPmConverter(response.data.sys.sunrise, response.data.timezone),
+          sunset: this.amPmConverter(response.data.sys.sunset, response.data.timezone),
           clouds: response.data.clouds.all,
           humidity: response.data.main.humidity,
           wind: response.data.wind.speed
         },
-        currWeatherCondition: response.data.weather[0].main
+        currWeatherCondition: response.data.weather[0].main,
+        query: query,
       });
       console.log('curr state:', this.state);
     }).catch(() => {
@@ -87,34 +90,35 @@ class App extends React.Component {
     // })
   }
 
-  amPmConverter = (UNIX_timestamp) => {
-    const res = new Date(UNIX_timestamp * 1000);
-    const min = res.getMinutes();
-    const hour = res.getHours();
+  amPmConverter = (UNIX_timestamp, timezone) => {
+    // const { timezone } = this.state.currData;
+    console.log(`timezone: ${timezone}, type: ${typeof timezone}`);
+    const res = new Date((UNIX_timestamp + timezone) * 1000);
+    const hour = res.getUTCHours();
+    const min = res.getUTCMinutes();
     const currTime = hour > 12 ? `${hour - 12}:${min}PM` : `${hour}:${min}AM`;
     return currTime;
   }
 
-  timeConverter = (UNIX_timestamp) => {
+  timeConverter = (UNIX_timestamp, timezone) => {
     // Create a new JavaScript Date object based on the timestamp,
     // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-    const res = new Date(UNIX_timestamp * 1000);
-    console.log(`res: ${res}`);
-    console.log(res.getMonth());
+    // const { timezone } = this.state.currData;
+    const res = new Date((UNIX_timestamp + timezone) * 1000);
     const monthsArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const daysArr = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-    const day = daysArr[res.getDay() - 1];
+    const day = daysArr[res.getUTCDay() - 1];
     const year = res.getFullYear();
     // getMonth() returns an integer number between 0 and 11, 0 corresponds to January. 
-    const month = monthsArr[res.getMonth()];
-    const date = res.getDate();
-    const currTime = this.amPmConverter(UNIX_timestamp)
+    const month = monthsArr[res.getUTCMonth()];
+    const date = res.getUTCDate();
+    const currTime = this.amPmConverter(UNIX_timestamp, timezone)
     const time = `${day} - ${date} ${month} ${year} - ${currTime}`;
     return time;
   }
 
   render () {
-    const { city, temp, description, time, weatherIcon, sunrise, sunset,
+    const { city, temp, description, localTime, weatherIcon, sunrise, sunset,
       clouds, humidity, wind } = this.state.currData
     return (
       <div className='app-container'>
@@ -122,7 +126,7 @@ class App extends React.Component {
           <SearchBar searching={this.handleSearch} />
           {this.state.isLoading && <h1>Loading...</h1>}
           {!this.state.isLoading && <CurrentWeather
-            city={city} temp={temp} description={description} time={time}
+            city={city} temp={temp} description={description} time={localTime}
             weatherIcon={weatherIcon}
           />}
         </section>

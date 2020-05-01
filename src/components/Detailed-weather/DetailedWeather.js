@@ -1,4 +1,5 @@
 import React from 'react';
+import { Doughnut } from 'react-chartjs-2';
 import './detailed-weather.css';
 
 class DetailedWeather extends React.Component {
@@ -95,21 +96,55 @@ class DetailedWeather extends React.Component {
     return res;
   }
 
-
   render () {
     const { sunrise, sunset, clouds, humidity, wind } = this.props;
+    const clouds_data = {
+      labels: ['Clouds'],
+      datasets: [{
+        data: [(clouds / 100), 1 - (clouds / 100)],
+        backgroundColor: [
+          '#36A2EB',
+          'gray'
+        ],
+      }]
+    };
+    const humidity_data = {
+      labels: ['Humidity'],
+      datasets: [{
+        data: [(humidity / 100), 1 - (humidity / 100)],
+        backgroundColor: [
+          '#36A2EB',
+          'gray'
+        ],
+      }]
+    };
+
+    const optionsDo = {
+      legend: {
+        display: true,
+        labels: {
+          fontColor: "white",
+          fontSize: 12
+        },
+        responsive: true,
+        maintainAspectRatio: true,
+      },
+    }
+
     return (
-      <div className='detailed-weather-container'>
+      <div className='detailed-weather-container' >
         <section className="sun-container">
           <p className="sun-container__sunrise">{`SUNRISE ${sunrise}`}</p>
           <p className="sun-container__sunset">{`SUNSET ${sunset}`}</p>
         </section>
         <section className="other-weather-info-container">
-          <p>{`Clouds - ${clouds}%`}</p>
-          <p>{`Humidity - ${humidity}%`}</p>
+          <p id='clouds'>{`Clouds - ${clouds}%`}</p>
+          <Doughnut data={clouds_data} options={optionsDo} />
+          <p id='humidity'>{`Humidity - ${humidity}%`} </p>
+          <Doughnut data={humidity_data} options={optionsDo} />
           <p>{`Wind Level - ${this.windSpd2Lvl(wind)}`}</p>
         </section>
-      </div>
+      </div >
     )
   }
 }

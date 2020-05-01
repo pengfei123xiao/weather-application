@@ -19,7 +19,7 @@ class CurrentWeather extends React.Component {
         <div className="divide-line"></div>
         <div className='other-info'>
           <p>{city}</p>
-          <p>{time}</p>
+          <p>Local Time: {time}</p>
         </div>
       </section>
     )
