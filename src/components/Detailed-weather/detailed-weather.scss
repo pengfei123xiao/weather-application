@@ -24,9 +24,10 @@
 
 .other-weather-info-container {
   width: 90%;
-  // max-height: 10%;
+  padding-bottom: 3%;
   margin: auto;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;

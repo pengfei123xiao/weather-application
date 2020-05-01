@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import './detailed-weather.css';
 
@@ -99,7 +99,7 @@ class DetailedWeather extends React.Component {
   render () {
     const { sunrise, sunset, clouds, humidity, wind } = this.props;
     const clouds_data = {
-      labels: ['Clouds'],
+      labels: [`Clouds: ${clouds}%`],
       datasets: [{
         data: [(clouds / 100), 1 - (clouds / 100)],
         backgroundColor: [
@@ -108,10 +108,23 @@ class DetailedWeather extends React.Component {
         ],
       }]
     };
+
     const humidity_data = {
-      labels: ['Humidity'],
+      labels: [`Humidity: ${humidity}%`],
       datasets: [{
         data: [(humidity / 100), 1 - (humidity / 100)],
+        backgroundColor: [
+          '#36A2EB',
+          'gray'
+        ],
+      }]
+    };
+
+    const wind_level = this.windSpd2Lvl(wind);
+    const wind_data = {
+      labels: [`Wind Level: ${wind_level}/12`],
+      datasets: [{
+        data: [(wind_level / 12), 1 - (wind_level / 12)],
         backgroundColor: [
           '#36A2EB',
           'gray'
@@ -124,9 +137,9 @@ class DetailedWeather extends React.Component {
         display: true,
         labels: {
           fontColor: "white",
-          fontSize: 12
+          fontSize: 11
         },
-        responsive: true,
+        responsive: false,
         maintainAspectRatio: true,
       },
     }
@@ -138,11 +151,18 @@ class DetailedWeather extends React.Component {
           <p className="sun-container__sunset">{`SUNSET ${sunset}`}</p>
         </section>
         <section className="other-weather-info-container">
-          <p id='clouds'>{`Clouds - ${clouds}%`}</p>
-          <Doughnut data={clouds_data} options={optionsDo} />
-          <p id='humidity'>{`Humidity - ${humidity}%`} </p>
-          <Doughnut data={humidity_data} options={optionsDo} />
-          <p>{`Wind Level - ${this.windSpd2Lvl(wind)}`}</p>
+          {/* <p id='clouds'>{`Clouds - ${clouds}%`}</p> */}
+          <div>
+            <Doughnut data={clouds_data} width={130} height={110} options={optionsDo} />
+          </div>
+          {/* <p id='humidity'>{`Humidity - ${humidity}%`} </p> */}
+          <div>
+            <Doughnut data={humidity_data} width={130} height={110} options={optionsDo} />
+          </div>
+          {/* <p>{`Wind Level - ${this.windSpd2Lvl(wind)}`}</p> */}
+          <div>
+            <Doughnut data={wind_data} width={130} height={110} options={optionsDo} />
+          </div>
         </section>
       </div >
     )

@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import './app.css';
 import weatherApi from '../../api/weather-api';
 import CurrentWeather from '../Current-weather/CurrentWeather';
 import SearchBar from '../Search-bar/SearchBar';
 import DetailedWeather from '../Detailed-weather/DetailedWeather';
+// background images
+import Clear from "../../imgs/Clear.jpeg";
+import Clouds from "../../imgs/Clouds.jpeg";
+import DefaultImg from "../../imgs/default.jpeg";
+import Drizzle from "../../imgs/Drizzle.jpeg";
+import FOG from "../../imgs/Fog.jpeg";
+import Rain from "../../imgs/Rain.jpeg";
+import Snow from "../../imgs/Snow.jpeg";
+import Thunderstorm from "../../imgs/Thunderstorm.jpeg";
+
 
 const API_key = '0775917fc2a3889cd95b31da9ea452c4';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.bgRef = React.createRef(); // ref of a component
     this.state = {
       isLoading: true,
       currData: {
@@ -51,6 +62,7 @@ class App extends React.Component {
     }).then((response) => {
       // handle success
       console.log('weather response:', response);
+      this.setBackground(response.data.weather[0].main);
       this.setState({
         isLoading: false,
         currData: {
@@ -86,8 +98,44 @@ class App extends React.Component {
     //   // handle success
     //   console.log('forecast response:', response);
     //   const fiveDaysData = response.data.list;
-
     // })
+  }
+
+  setBackground = (condition) => {
+    // set background according to weather condition
+    console.log(condition);
+    switch (condition) {
+      case "Clear":
+        this.bgRef.current.style.backgroundImage = `url(${Clear})`;
+        this.bgRef.current.style.backgroundPosition = "center";
+        break;
+      case "Clouds":
+        this.bgRef.current.style.backgroundImage = `url(${Clouds})`;
+        this.bgRef.current.style.backgroundPosition = "center";
+        break;
+      case "Drizzle":
+        this.bgRef.current.style.backgroundImage = `url(${Drizzle})`;
+        this.bgRef.current.style.backgroundPosition = "center";
+        break;
+      case "Fog":
+        this.bgRef.current.style.backgroundImage = `url(${FOG})`;
+        this.bgRef.current.style.backgroundPosition = "center";
+      case "Rain":
+        this.bgRef.current.style.backgroundImage = `url(${Rain})`;
+        this.bgRef.current.style.backgroundPosition = "center";
+        break;
+      case "Snow":
+        this.bgRef.current.style.backgroundImage = `url(${Snow})`;
+        this.bgRef.current.style.backgroundPosition = "center";
+        break;
+      case "Thunderstorm":
+        this.bgRef.current.style.backgroundImage = `url(${Thunderstorm})`;
+        this.bgRef.current.style.backgroundPosition = "center";
+        break;
+      default:
+        this.bgRef.current.style.backgroundImage = `url(${DefaultImg})`;
+        this.bgRef.current.style.backgroundPosition = "center";
+    }
   }
 
   amPmConverter = (UNIX_timestamp, timezone) => {
@@ -121,20 +169,22 @@ class App extends React.Component {
     const { city, temp, description, localTime, weatherIcon, sunrise, sunset,
       clouds, humidity, wind } = this.state.currData
     return (
-      <div className='app-container'>
-        <section className='left-container'>
-          <SearchBar searching={this.handleSearch} />
-          {this.state.isLoading && <h1>Loading...</h1>}
-          {!this.state.isLoading && <CurrentWeather
-            city={city} temp={temp} description={description} time={localTime}
-            weatherIcon={weatherIcon}
-          />}
-        </section>
-        <section className="right-container">
-          <DetailedWeather sunrise={sunrise} sunset={sunset} clouds={clouds}
-            humidity={humidity} wind={wind} />
-        </section>
-      </div >
+      <div className="App" ref={this.bgRef}>
+        <div className='app-container'>
+          <section className='left-container'>
+            <SearchBar searching={this.handleSearch} />
+            {this.state.isLoading && <h1>Loading...</h1>}
+            {!this.state.isLoading && <CurrentWeather
+              city={city} temp={temp} description={description} time={localTime}
+              weatherIcon={weatherIcon}
+            />}
+          </section>
+          <section className="right-container">
+            <DetailedWeather sunrise={sunrise} sunset={sunset} clouds={clouds}
+              humidity={humidity} wind={wind} />
+          </section>
+        </div>
+      </div>
 
     )
   }

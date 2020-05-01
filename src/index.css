@@ -9,9 +9,6 @@ body {
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url(./imgs/default.jpg) no-repeat;
-  background-size: cover;
-  height: 90vh;
 }
 
 code {
