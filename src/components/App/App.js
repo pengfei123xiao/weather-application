@@ -154,8 +154,9 @@ class App extends React.Component {
     // const { timezone } = this.state.currData;
     const res = new Date((UNIX_timestamp + timezone) * 1000);
     const monthsArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const daysArr = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-    const day = daysArr[res.getUTCDay() - 1];
+    const daysArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    // console.log('res.getUTCDay()', res.getUTCDay());
+    const day = daysArr[res.getUTCDay()];
     const year = res.getFullYear();
     // getMonth() returns an integer number between 0 and 11, 0 corresponds to January. 
     const month = monthsArr[res.getUTCMonth()];
@@ -167,7 +168,7 @@ class App extends React.Component {
 
   render () {
     const { city, temp, description, localTime, weatherIcon, sunrise, sunset,
-      clouds, humidity, wind } = this.state.currData
+      clouds, humidity, wind } = this.state.currData;
     return (
       <div className="App" ref={this.bgRef}>
         <div className='app-container'>
