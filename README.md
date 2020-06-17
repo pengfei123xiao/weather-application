@@ -1,68 +1,67 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=150px height=150px src="public/readme_pic.png" alt="logo"></a>
+</p>
 
-## Available Scripts
+<h3 align="center">Weather App</h3>
 
-In the project directory, you can run:
+<div align="center">
 
-### `yarn start`
+[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+</div>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+---
 
-### `yarn test`
+<p align="center"> 🍔 A simple weather application built with <b>React.js</b>, <b>SASS</b>
+<br>
+<a href="https://weather-app-axiao.s3-ap-southeast-2.amazonaws.com/index.html">Demo Link</a>
+</p>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📝 Table of Contents
 
-### `yarn build`
+- [About](#about)
+- [Demo](#demo)
+- [How it works](#working)
+- [Getting Started](#getting_started)
+- [Authors](#authors)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🧐 About <a name = "about"></a>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Weather App is a website which users can search the weather condition in any place around the world. It supports automatically change the background based on different weather conditions. The weather app is inspiring designed and implemented with lots of animated modules and minimalist website layout.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🎥 Demo <a name = "demo"></a>
+- Demo URL: https://weather-app-axiao.s3-ap-southeast-2.amazonaws.com/index.html
 
-### `yarn eject`
+## 💭 How it works <a name = "working"></a>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Built the App utilizing React.js and Used the Eslint to inspect the problematic code.
+- Used the Axios to make HTTP requests to fetch the weather data.
+- Followed the principle of Thinking in React to build reusable, maintainable and readable components and applications with React.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🏁 Getting Started <a name = "getting_started"></a>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-## Learn More
+### 🔧 Prerequisites
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+What things you need to install the software and how to install them.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+Node
+React
+```
 
-### Code Splitting
+### ⛏️ Installing
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+At root folder
+```
+npm install
+npm start
+```
 
-### Analyzing the Bundle Size
+## ✍️ Authors <a name = "authors"></a>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [@Allen Xiao](https://github.com/pengfei123xiao) - Idea & Initial work
