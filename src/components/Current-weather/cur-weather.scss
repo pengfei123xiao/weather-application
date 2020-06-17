@@ -57,9 +57,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: $font-sm;
+  font-size: $font-md;
   @include ipad() {
-    font-size: $font-xsm;
+    font-size: $font-sm;
   }
 
   @include iphone() {
