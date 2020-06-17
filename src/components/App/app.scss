@@ -9,11 +9,17 @@
 }
 
 .app-container {
-  height: 78vh;
+  height: 80vh;
   border: 3px solid black;
   border-radius: 15px;
   color: white;
   display: flex;
+  @include ipad() {
+    height: 70vh;
+  }
+  @include iphone() {
+    height: 60vh;
+  }
 }
 
 .left-container {

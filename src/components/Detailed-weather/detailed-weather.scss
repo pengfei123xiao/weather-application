@@ -51,19 +51,23 @@
   padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
-  // flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
   background-color: $color-gray1;
   border-radius: 5px;
   > p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto;
-    width: 50%;
+    width: 60%;
     border-bottom: 1px solid white;
     &:last-child {
       border-bottom: none;
     }
     font-size: $font-sm;
+    @include ipad() {
+      font-size: $font-xsm;
+      width: 70%;
+    }
     @include iphone() {
       font-size: $font-xsm;
       width: 70%;
@@ -71,6 +75,7 @@
     span {
       display: inline-block;
       width: 33%;
+      padding-bottom: 0.3rem;
     }
     img {
       width: 30%;

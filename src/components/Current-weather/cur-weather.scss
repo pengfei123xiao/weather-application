@@ -13,15 +13,15 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: -5rem;
-  > h1 {
+  margin-bottom: 0;
+  > h2 {
     font-size: $font-xl;
   }
   > p {
     font-size: $font-lg;
   }
   @include ipad() {
-    > h1 {
+    > h2 {
       font-size: $font-lg;
     }
     > p {
@@ -30,27 +30,18 @@
   }
 
   @include iphone() {
-    > h1 {
+    > h2 {
       font-size: $font-md;
-      margin-bottom: 0;
     }
     > p {
       font-size: $font-sm;
-      margin-bottom: 0;
     }
-    margin-bottom: -3rem;
   }
 }
 
 .divide-line {
   height: 3px;
   background-color: white;
-  @include ipad() {
-    margin-top: 2.5rem;
-  }
-  @include iphone() {
-    margin-top: 3rem;
-  }
 }
 
 .other-info {

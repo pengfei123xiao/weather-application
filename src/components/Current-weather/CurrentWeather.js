@@ -12,7 +12,7 @@ class CurrentWeather extends React.Component {
     return (
       <section className='cur-weather'>
         <div className='weather-info'>
-          <h1>{temp}&#176;C</h1>
+          <h2>{temp}&#176;C</h2>
           <p>{description}</p>
           <img src={weatherIcon} alt="weatherIcon" />
         </div>
