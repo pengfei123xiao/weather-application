@@ -1,5 +1,5 @@
 import React from 'react';
-import './cur-weather.css';
+import './cur-weather.scss';
 
 class CurrentWeather extends React.Component {
   constructor(props) {

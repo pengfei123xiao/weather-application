@@ -3,6 +3,8 @@
 .detailed-weather-container {
   display: flex;
   flex-direction: column;
+  // flex-wrap: wrap;
+  justify-content: space-between;
   opacity: 0.85;
 }
 
@@ -15,26 +17,63 @@
     background-color: $color-gray1;
     border-radius: 5px;
     margin-right: 4%;
-    padding: 3% 2%;
+    padding: 4% 3%;
     text-align: center;
     font-weight: bold;
     font-size: $font-sm;
+    @include iphone() {
+      font-size: $font-xsm;
+    }
   }
 }
 
 .other-weather-info-container {
-  width: 90%;
-  padding-bottom: 3%;
+  width: 95%;
   margin: auto;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-around;
   align-items: center;
   background-color: $color-gray1;
   border-radius: 5px;
   p {
-    margin-right: 1rem;
-    font-size: $font-xsm;
+    margin: 2% 1.5%;
+    font-size: $font-sm;
+    @include iphone() {
+      font-size: $font-xsm;
+    }
+  }
+}
+
+.forcast-container {
+  width: 95%;
+  margin: 1rem auto;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  // flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: $color-gray1;
+  border-radius: 5px;
+  > p {
+    margin: 0 auto;
+    width: 50%;
+    border-bottom: 1px solid white;
+    &:last-child {
+      border-bottom: none;
+    }
+    font-size: $font-sm;
+    @include iphone() {
+      font-size: $font-xsm;
+      width: 70%;
+    }
+    span {
+      display: inline-block;
+      width: 33%;
+    }
+    img {
+      width: 30%;
+    }
   }
 }

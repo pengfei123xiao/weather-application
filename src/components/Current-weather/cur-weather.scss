@@ -2,16 +2,17 @@
 
 .cur-weather {
   width: 90%;
-  margin: auto;
+  margin: 0 auto;
   background-color: $color-gray2;
   border-radius: 15px;
-  padding: 10px;
+  padding: 1rem;
 }
 
 .weather-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   margin-bottom: -5rem;
   > h1 {
     font-size: $font-xl;
@@ -19,11 +20,37 @@
   > p {
     font-size: $font-lg;
   }
+  @include ipad() {
+    > h1 {
+      font-size: $font-lg;
+    }
+    > p {
+      font-size: $font-md;
+    }
+  }
+
+  @include iphone() {
+    > h1 {
+      font-size: $font-md;
+      margin-bottom: 0;
+    }
+    > p {
+      font-size: $font-sm;
+      margin-bottom: 0;
+    }
+    margin-bottom: -3rem;
+  }
 }
 
 .divide-line {
   height: 3px;
   background-color: white;
+  @include ipad() {
+    margin-top: 2.5rem;
+  }
+  @include iphone() {
+    margin-top: 3rem;
+  }
 }
 
 .other-info {
@@ -31,4 +58,15 @@
   justify-content: space-between;
   align-items: center;
   font-size: $font-sm;
+  @include ipad() {
+    font-size: $font-xsm;
+  }
+
+  @include iphone() {
+    font-size: $font-xsm;
+    flex-wrap: wrap;
+    > p {
+      margin-bottom: 0;
+    }
+  }
 }

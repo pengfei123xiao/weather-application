@@ -18,6 +18,9 @@
     &:focus {
       outline: none;
     }
+    @include ipad() {
+      font-size: $font-sm;
+    }
   }
   &__close-btn {
     position: absolute;

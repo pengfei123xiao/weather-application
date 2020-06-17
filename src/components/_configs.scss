@@ -7,9 +7,27 @@ $window-size-md: 95%;
 $font-xl: 5.5rem;
 $font-lg: 3rem;
 $font-md: 2rem;
-$font-sm: 1.6rem;
-$font-xsm: 1.2rem;
+$font-sm: 1.4rem;
+$font-xsm: 1.1rem;
 
 // colors
 $color-gray1: #718096;
 $color-gray2: rgba(160, 174, 192, 0.5);
+
+/*media query*/
+// Small tablets and large smartphones (landscape view)
+$screen-small-max: 375px;
+
+// Small tablets (portrait view)
+$screen-medium-max: 768px;
+
+@mixin ipad() {
+  @media (max-width: #{$screen-medium-max}) {
+    @content;
+  }
+}
+@mixin iphone() {
+  @media (max-width: #{$screen-small-max}) {
+    @content;
+  }
+}

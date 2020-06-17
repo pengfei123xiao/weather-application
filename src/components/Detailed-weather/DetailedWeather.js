@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import { Doughnut } from 'react-chartjs-2';
-import './detailed-weather.css';
+import React from 'react';
+// import { Doughnut } from 'react-chartjs-2';
+import './detailed-weather.scss';
 
 class DetailedWeather extends React.Component {
   constructor(props) {
@@ -96,8 +96,23 @@ class DetailedWeather extends React.Component {
     return res;
   }
 
+  dateConverter = (UNIX_timestamp, timezone) => {
+    // Create a new JavaScript Date object based on the timestamp,
+    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+    // const { timezone } = this.state.currData;
+    const res = new Date((UNIX_timestamp + timezone) * 1000);
+    const monthsArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    // getMonth() returns an integer number between 0 and 11, 0 corresponds to January. 
+    const month = monthsArr[res.getUTCMonth()];
+    const date = res.getUTCDate();
+    const resDate = `${date} ${month}`;
+    return resDate;
+  }
+
   render () {
-    const { sunrise, sunset, clouds, humidity, wind } = this.props;
+    const { sunrise, sunset, clouds, humidity, wind,
+      fiveDayForecast, timezone } = this.props;
+
     const clouds_data = {
       labels: [`Clouds: ${clouds}%`],
       datasets: [{
@@ -143,6 +158,11 @@ class DetailedWeather extends React.Component {
         maintainAspectRatio: true,
       },
     }
+    let filteredForecast = []
+    for (let i = 4; i < JSON.parse(fiveDayForecast).length; i += 10) {
+      filteredForecast.push(JSON.parse(fiveDayForecast)[i])
+    }
+    // console.log('filteredForecast', filteredForecast)
 
     return (
       <div className='detailed-weather-container' >
@@ -151,22 +171,41 @@ class DetailedWeather extends React.Component {
           <p className="sun-container__sunset">{`SUNSET ${sunset}`}</p>
         </section>
         <section className="other-weather-info-container">
-          {/* <p id='clouds'>{`Clouds - ${clouds}%`}</p> */}
-          <div>
+          <p id='clouds'>{`Clouds - ${clouds}%`}</p>
+          {/* <div>
             <Doughnut data={clouds_data} width={130} height={110} options={optionsDo} />
-          </div>
-          {/* <p id='humidity'>{`Humidity - ${humidity}%`} </p> */}
-          <div>
+          </div> */}
+          <p id='humidity'>{`Humidity - ${humidity}%`} </p>
+          {/* <div>
             <Doughnut data={humidity_data} width={130} height={110} options={optionsDo} />
-          </div>
-          {/* <p>{`Wind Level - ${this.windSpd2Lvl(wind)}`}</p> */}
-          <div>
+          </div> */}
+          <p>{`Wind Level - ${this.windSpd2Lvl(wind)}`}</p>
+          {/* <div>
             <Doughnut data={wind_data} width={130} height={110} options={optionsDo} />
-          </div>
+          </div> */}
+        </section>
+        <section className="forcast-container">
+          {JSON.parse(fiveDayForecast)[0] !== undefined ?
+            filteredForecast.map((ele, idx) =>
+              (<ForecastList key={idx} date={this.dateConverter(ele.dt, timezone)}
+                temp={(ele.main.temp).toFixed(0)}
+                weatherIcon={`http://openweathermap.org/img/wn/${ele.weather[0].icon}.png`} />
+              )
+            )
+            : ''}
+          {/* {console.log('fiveDayForecast', JSON.parse(fiveDayForecast)[0])} */}
         </section>
       </div >
     )
   }
 }
+
+const ForecastList = (props) => (
+  <p>
+    <span>{props.date}</span>
+    <span>{props.temp}&#176;C</span>
+    <img src={props.weatherIcon} alt="weatherIcon" />
+  </p>
+)
 
 export default DetailedWeather;

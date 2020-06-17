@@ -1,18 +1,18 @@
-import React, { createRef } from 'react';
-import './app.css';
+import React from 'react';
+import './app.scss';
 import weatherApi from '../../api/weather-api';
 import CurrentWeather from '../Current-weather/CurrentWeather';
 import SearchBar from '../Search-bar/SearchBar';
 import DetailedWeather from '../Detailed-weather/DetailedWeather';
 // background images
-import Clear from "../../imgs/Clear.jpeg";
-import Clouds from "../../imgs/Clouds.jpeg";
-import DefaultImg from "../../imgs/default.jpeg";
-import Drizzle from "../../imgs/Drizzle.jpeg";
-import FOG from "../../imgs/Fog.jpeg";
-import Rain from "../../imgs/Rain.jpeg";
-import Snow from "../../imgs/Snow.jpeg";
-import Thunderstorm from "../../imgs/Thunderstorm.jpeg";
+import Clear from "../../imgs/backgrounds/Clear.jpeg";
+import Clouds from "../../imgs/backgrounds/Clouds.jpeg";
+import DefaultImg from "../../imgs/backgrounds/default.jpeg";
+import Drizzle from "../../imgs/backgrounds/Drizzle.jpeg";
+import FOG from "../../imgs/backgrounds/Fog.jpeg";
+import Rain from "../../imgs/backgrounds/Rain.jpeg";
+import Snow from "../../imgs/backgrounds/Snow.jpeg";
+import Thunderstorm from "../../imgs/backgrounds/Thunderstorm.jpeg";
 
 
 const API_key = '0775917fc2a3889cd95b31da9ea452c4';
@@ -37,7 +37,9 @@ class App extends React.Component {
         wind: "",
       },
       currWeatherCondition: "",
-      forecastWeather: {},
+      forecastWeather: {
+        fiveDayForecast: [],
+      },
       query: 'Sydney'
     };
   }
@@ -82,23 +84,31 @@ class App extends React.Component {
         currWeatherCondition: response.data.weather[0].main,
         query: query,
       });
-      console.log('curr state:', this.state);
+      // console.log('curr state:', this.state);
     }).catch(() => {
       // handle error
       alert('unknown city / error');
     });
 
     // ---obtain weather forecast data---
-    // weatherApi.get('forecast', {
-    //   params: {
-    //     q: "Sydney", // default city is Sydney
-    //     appid: `${API_key}`,
-    //   } // `http://api.openweathermap.org/data/2.5/forecast?q=Sydney&appid=${API_key}`
-    // }).then((response) => {
-    //   // handle success
-    //   console.log('forecast response:', response);
-    //   const fiveDaysData = response.data.list;
-    // })
+    weatherApi.get('forecast', {
+      params: {
+        q: query, // default city is Sydney
+        appid: `${API_key}`,
+        units: 'metric' // so that the temp is in Celsius
+      } // `http://api.openweathermap.org/data/2.5/forecast?q=Sydney&appid=${API_key}`
+    }).then((response) => {
+      // handle success
+      console.log('forecast response:', response);
+      // const fiveDaysData = response.data.list;
+      // console.log(this.timeConverter(fiveDaysData[39].dt, response.data.city.timezone))
+      this.setState({
+        forecastWeather: {
+          fiveDayForecast: response.data.list,
+        },
+      })
+
+    })
   }
 
   setBackground = (condition) => {
@@ -139,8 +149,7 @@ class App extends React.Component {
   }
 
   amPmConverter = (UNIX_timestamp, timezone) => {
-    // const { timezone } = this.state.currData;
-    console.log(`timezone: ${timezone}, type: ${typeof timezone}`);
+    // console.log(`timezone: ${timezone}, type: ${typeof timezone}`);
     const res = new Date((UNIX_timestamp + timezone) * 1000);
     const hour = res.getUTCHours();
     const min = res.getUTCMinutes();
@@ -167,8 +176,10 @@ class App extends React.Component {
   }
 
   render () {
-    const { city, temp, description, localTime, weatherIcon, sunrise, sunset,
+    const { city, temp, description, localTime, timezone, weatherIcon, sunrise, sunset,
       clouds, humidity, wind } = this.state.currData;
+    const { fiveDayForecast } = this.state.forecastWeather;
+    // console.log('fiveDayForecast', fiveDayForecast);
     return (
       <div className="App" ref={this.bgRef}>
         <div className='app-container'>
@@ -177,12 +188,12 @@ class App extends React.Component {
             {this.state.isLoading && <h1>Loading...</h1>}
             {!this.state.isLoading && <CurrentWeather
               city={city} temp={temp} description={description} time={localTime}
-              weatherIcon={weatherIcon}
-            />}
+              weatherIcon={weatherIcon} />
+            }
           </section>
           <section className="right-container">
             <DetailedWeather sunrise={sunrise} sunset={sunset} clouds={clouds}
-              humidity={humidity} wind={wind} />
+              humidity={humidity} wind={wind} fiveDayForecast={JSON.stringify(fiveDayForecast)} timezone={timezone} />
           </section>
         </div>
       </div>
