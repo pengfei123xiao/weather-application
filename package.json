@@ -19,7 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "sass": "node-sass -w src/styles/sass/ -o src/styles/css --recursive"
+    "sass": "node-sass -w src/styles/sass/ -o src/styles/css --recursive",
+    "deploy": "aws s3 sync build/ s3://weather-app-axiao --acl public-read"
   },
   "eslintConfig": {
     "extends": "react-app"
