@@ -193,7 +193,6 @@ class DetailedWeather extends React.Component {
               )
             )
             : ''}
-          {/* {console.log('fiveDayForecast', JSON.parse(fiveDayForecast)[0])} */}
         </section>
       </div >
     )

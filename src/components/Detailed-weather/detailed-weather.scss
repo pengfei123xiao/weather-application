@@ -3,14 +3,19 @@
 .detailed-weather-container {
   display: flex;
   flex-direction: column;
-  // flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+  height: 75vh;
   opacity: 0.85;
+  @include ipad() {
+    height: 60vh;
+  }
 }
 
 .sun-container {
   display: flex;
   justify-content: center;
+  width: 95%;
   flex-wrap: wrap;
   &__sunrise,
   &__sunset {
@@ -21,18 +26,21 @@
     text-align: center;
     font-weight: bold;
     font-size: $font-sm;
-    @include iphone() {
+    @include ipad() {
       font-size: $font-xsm;
+    }
+    @include iphone() {
+      font-weight: normal;
+      margin-right: 0;
+      padding: 8% 6%;
     }
   }
 }
 
 .other-weather-info-container {
   width: 95%;
-  margin: auto;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   align-items: center;
   background-color: $color-gray1;
   border-radius: 5px;
@@ -47,7 +55,6 @@
 
 .forcast-container {
   width: 95%;
-  margin: 1rem auto;
   padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
@@ -57,6 +64,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     margin: 0 auto;
     width: 60%;
     border-bottom: 1px solid white;
@@ -68,17 +76,15 @@
       font-size: $font-xsm;
       width: 70%;
     }
-    @include iphone() {
-      font-size: $font-xsm;
-      width: 70%;
-    }
     span {
       display: inline-block;
       width: 33%;
-      padding-bottom: 0.3rem;
     }
     img {
-      width: 30%;
+      width: 23%;
+      @include iphone() {
+        margin-left: 8%;
+      }
     }
   }
 }

@@ -51,13 +51,13 @@
   font-size: $font-md;
   @include ipad() {
     font-size: $font-sm;
-  }
-
-  @include iphone() {
-    font-size: $font-xsm;
     flex-wrap: wrap;
     > p {
       margin-bottom: 0;
     }
+  }
+
+  @include iphone() {
+    font-size: $font-xsm;
   }
 }

@@ -1,34 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createSearch, clearSearch } from '../../redux/actions/weatherActions';
+
 import './search-bar.scss';
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      query: ''
-    }
   }
 
   handleChange = (e) => {
-    this.setState({
-      query: e.target.value,
-    })
+    this.props.createSearch(e.target.value);
   }
 
   handleSubmit = (e) => {
     e.preventDefault(); // prevent jumping to a new page
-    console.log(`query city: ${this.state.query}`);
-    this.props.searching(this.state.query);
+    this.props.searching(this.props.searchBarVal);
     // clear search bar
-    this.setState({
-      query: '',
-    })
+    this.props.clearSearch();
   }
 
   handleClick = () => {
     // handle cancel click
-    this.setState({
-      query: '',
-    })
+    this.props.clearSearch();
   }
 
   render () {
@@ -36,18 +29,24 @@ class SearchBar extends React.Component {
       <section className='search-bar'>
         <form onSubmit={this.handleSubmit}>
           <input type='text' placeholder='Searching...'
-            value={this.state.query}
+            value={this.props.searchBarVal}
             onChange={this.handleChange} />
-          {/* <span onClick={this.handleClick}></span> */}
           <div className="search-bar__close-btn" onClick={this.handleClick}>
             <div className="cross-line"></div>
             <div className="cross-line"></div>
           </div>
         </form>
-
       </section >
     )
   }
 }
 
-export default SearchBar;
+const mapState = (state) => ({
+  searchBarVal: state.weatherReducer.searchBarVal,
+});
+
+const mapActions = {
+  createSearch, clearSearch
+}
+
+export default connect(mapState, mapActions)(SearchBar);

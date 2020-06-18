@@ -14,7 +14,7 @@
 
 ---
 
-<p align="center"> 🍔 A simple weather application built with <b>React.js</b>, <b>SASS</b>
+<p align="center"> 🍔 A simple weather application built with <b>React.js</b>, <b>Redux</b> and <b>SASS</b>
 <br>
 <a href="https://weather-app-axiao.s3-ap-southeast-2.amazonaws.com/index.html">Demo Link</a>
 </p>
@@ -29,16 +29,17 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Weather App is a website which users can search the weather condition in any place around the world. It supports automatically change the background based on different weather conditions. The weather app is inspiring designed and implemented with lots of animated modules and minimalist website layout.
+This Weather App allows users to search the weather condition in any place around the world by typing the city name. It supports automatically change the background based on different weather conditions.
 
 ## 🎥 Demo <a name = "demo"></a>
 - Demo URL: https://weather-app-axiao.s3-ap-southeast-2.amazonaws.com/index.html
 
 ## 💭 How it works <a name = "working"></a>
 
-- Built the App utilizing React.js and Used the Eslint to inspect the problematic code.
-- Used the Axios to make HTTP requests to fetch the weather data.
-- Followed the principle of Thinking in React to build reusable, maintainable and readable components and applications with React.
+- This Web App is developed based on `React.js` and `Redux`;
+- `Axios` is used to send HTTP requests to fetch the weather data;
+- `Eslint` used to inspect the problematic code;
+- Followed the principle of Thinking in React to build reusable, maintainable and readable components and applications.
 
 
 ## 🏁 Getting Started <a name = "getting_started"></a>

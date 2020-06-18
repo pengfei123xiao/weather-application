@@ -5,7 +5,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 90vh;
-  padding: 15px;
+  padding: 1.5rem;
 }
 
 .app-container {
@@ -15,10 +15,10 @@
   color: white;
   display: flex;
   @include ipad() {
-    height: 70vh;
+    height: 65vh;
   }
   @include iphone() {
-    height: 60vh;
+    height: 63vh;
   }
 }
 
