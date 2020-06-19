@@ -28,11 +28,12 @@
     font-size: $font-sm;
     @include ipad() {
       font-size: $font-xsm;
+      margin-top: 5%;
     }
     @include iphone() {
       font-weight: normal;
       margin-right: 0;
-      padding: 8% 6%;
+      padding: 6% 4.5%;
     }
   }
 }
@@ -44,9 +45,11 @@
   align-items: center;
   background-color: $color-gray1;
   border-radius: 5px;
+  padding: 2% 1.5%;
   p {
     margin: 2% 1.5%;
     font-size: $font-sm;
+    text-align: center;
     @include iphone() {
       font-size: $font-xsm;
     }
