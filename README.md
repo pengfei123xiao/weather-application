@@ -16,7 +16,7 @@
 
 <p align="center"> 🍔 A simple weather application built with <b>React.js</b>, <b>Redux</b> and <b>SASS</b>
 <br>
-<a href="https://weather-app-axiao.s3-ap-southeast-2.amazonaws.com/index.html">Demo Link</a>
+<a href="http://weather-app-axiao.s3-website-ap-southeast-2.amazonaws.com/">Demo Link</a>
 </p>
 
 ## 📝 Table of Contents
@@ -32,7 +32,7 @@
 This Weather App allows users to search the weather condition in any place around the world by typing the city name. It supports automatically change the background based on different weather conditions.
 
 ## 🎥 Demo <a name = "demo"></a>
-- Demo URL: https://weather-app-axiao.s3-ap-southeast-2.amazonaws.com/index.html
+- Demo URL: http://weather-app-axiao.s3-website-ap-southeast-2.amazonaws.com/
 
 ## 💭 How it works <a name = "working"></a>
 
