@@ -1,0 +1,55 @@
+/*media query*/
+.App {
+  background-image: url("../../imgs/backgrounds/default.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 90vh;
+  padding: 1.5rem;
+}
+
+.app-container {
+  height: 80vh;
+  border: 3px solid black;
+  border-radius: 15px;
+  color: white;
+  padding: 2%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    height: 65vh;
+  }
+}
+
+@media (max-width: 375px) {
+  .app-container {
+    height: 63vh;
+  }
+}
+
+.left-container {
+  width: 68%;
+  margin-right: 2%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.right-container {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+/*# sourceMappingURL=app.css.map */
